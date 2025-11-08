@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>AI Time Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Background animado para glassmorphism -->
+    <div class="background-gradient"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>⚡ AI Time Tracker</h1>
+            <p class="subtitle">Track smarter, earn better</p>
+            <div class="exchange-rate" id="exchangeRate">
+                Carregando cotação...
+            </div>
+        </header>
+
+        <!-- Settings Card -->
+        <div class="card settings-card">
+            <div class="setting-item">
+                <label>💰 Valor/Hora</label>
+                <input type="number" id="hourlyRate" value="23" min="1" step="0.5">
+                <span class="currency">USD</span>
+            </div>
+            <div class="setting-item">
+                <label>🎯 Meta Diária</label>
+                <input type="number" id="dailyGoal" value="100" min="1" step="10">
+                <span class="currency">USD</span>
+            </div>
+        </div>
+
+        <!-- Timer Card -->
+        <div class="card timer-card">
+            <div class="timer-display" id="timerDisplay">00:00:00</div>
+            <button class="timer-button" id="timerButton">
+                <span id="buttonText">Iniciar</span>
+            </button>
+            <p class="shortcut-hint">Pressione <kbd>ESPAÇO</kbd> para iniciar/pausar</p>
+        </div>
+
+        <!-- Earnings Card -->
+        <div class="card earnings-card">
+            <h3 class="card-title">💵 Ganhos da Sessão</h3>
+            <div class="earnings-grid">
+                <div class="earning-item primary">
+                    <span class="label">Bruto (USD)</span>
+                    <span class="value" id="sessionEarningsUSD">$0.00</span>
+                </div>
+                <div class="earning-item primary">
+                    <span class="label">Líquido (BRL)</span>
+                    <span class="value success" id="sessionEarningsBRL">R$ 0,00</span>
+                </div>
+            </div>
+            <div class="tax-info">
+                <small>-3,6% de taxas • Cotação atualizada automaticamente</small>
+            </div>
+        </div>
+
+        <!-- Today Total Card -->
+        <div class="card earnings-card">
+            <h3 class="card-title">📊 Total de Hoje</h3>
+            <div class="earnings-grid">
+                <div class="earning-item">
+                    <span class="label">Bruto (USD)</span>
+                    <span class="value" id="todayEarningsUSD">$0.00</span>
+                </div>
+                <div class="earning-item">
+                    <span class="label">Líquido (BRL)</span>
+                    <span class="value success" id="todayEarningsBRL">R$ 0,00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Card -->
+        <div class="card progress-card">
+            <div class="progress-header">
+                <span>Meta do Dia</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+          <!-- Activity Log -->
+        <div class="card activity-card">
+            <h3 class="card-title">📝 Atividades de Hoje</h3>
+            <div class="activity-log" id="activityLog">
+                <div class="activity-empty">
+                    Inicie o timer para registrar atividades
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card action-buttons">
+            <button class="action-btn secondary" id="clearSessionBtn">
+                🗑️ Limpar Sessão
+            </button>
+            <button class="action-btn primary" id="finalizeDayBtn">
+                ✅ Finalizar Dia
+            </button>
+        </div>
+
+        <!-- Confetti Container (para animação) -->
+        <canvas id="confettiCanvas"></canvas>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
